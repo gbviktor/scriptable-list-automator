@@ -35,10 +35,6 @@ namespace MontanaGames.ListAutomator
         }
     }
 
-    public interface IUniqueble<T>
-    {
-        public T ID { get; }
-    }
     public interface IUniqueble
     {
         public string ID { get; }
@@ -49,17 +45,34 @@ namespace MontanaGames.ListAutomator
     }
 
     [System.Serializable]
+    public class AssetItem<ObjectType> : IUniqueble
+    {
+        [SerializeField]
+        protected ObjectType obj;
+        [SerializeField]
+        protected string id;
 
+        [JsonIgnore]
+        public string ID
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
+    }
+
+    [System.Serializable]
     public class AssetItem : IAssetAdressable
     {
 #if UNITY_EDITOR
         [SerializeField]
-        //[HideLabel]
-        //[TableColumnWidth(55, resizable: false)]
-        //[PreviewField(50, alignment: ObjectFieldAlignment.Center), ReadOnly]
         protected Object previewEditor;
 #endif
-        //[VerticalGroup("Parameters")]
         [SerializeField]
         protected string id;
 
@@ -77,7 +90,6 @@ namespace MontanaGames.ListAutomator
         }
 
         [SerializeField]
-        //[VerticalGroup("Parameters")]
         protected AssetReference assetRef;
         [JsonIgnore]
         public AssetReference AssetRef
@@ -92,26 +104,6 @@ namespace MontanaGames.ListAutomator
                 previewEditor = value.editorAsset;
 #endif
                 assetRef = value;
-            }
-        }
-    }
-    public class AssetItem<ObjectType, IDType> : IUniqueble<IDType> where ObjectType : Object where IDType : IEqualityComparer<IDType>
-    {
-        [SerializeField]
-        protected ObjectType previewEditor;
-        [SerializeField]
-        protected IDType id;
-
-        [JsonIgnore]
-        public IDType ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
             }
         }
     }
