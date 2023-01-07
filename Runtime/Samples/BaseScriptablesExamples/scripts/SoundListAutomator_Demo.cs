@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 
-using MontanaGames.ListAutomator.Adressable;
-
 using UnityEngine;
-/// 
-/// VERY BAD EXAMPLE
-/// 
+
 namespace MontanaGames.ListAutomator
 {
 
     [CreateAssetMenu(menuName = "Montana Games/Demo/SoundListAutomator_Demo", fileName = "SoundListAutomator_Demo_Scriptable", order = 5)]
-    public class SoundListAutomator_Demo : BaseAutomatedListWithAdressables<AudioClipType>
+    public class SoundListAutomator_Demo : AutomatorListBase<AssetItem<AudioClip>, AudioClipType>
     {
         [Tooltip("If requested AudioClip not found, you receive defaulAudioClip")]
         [SerializeField] AudioClip defaultAudioClip;
@@ -43,5 +39,4 @@ namespace MontanaGames.ListAutomator
 #endif
         #endregion
     }
-
 }
