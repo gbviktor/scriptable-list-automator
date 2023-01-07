@@ -1,12 +1,7 @@
-﻿#if UNITASK
-using Cysharp.Threading.Tasks;
-#else
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 using UnityEngine;
-#endif
-
 
 namespace MontanaGames.ListAutomator
 {
