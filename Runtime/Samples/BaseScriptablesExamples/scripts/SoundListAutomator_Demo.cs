@@ -30,9 +30,10 @@ namespace MontanaGames.ListAutomator
         }
         protected override void RegisterAsset(string guid, Object obj, string id)
         {
-            if (obj as AudioClip != null)
+            if (obj is AudioClip audioClip)
             {
-                sounds.Add(obj as AudioClip);
+                if (!sounds.Contains(audioClip))
+                    sounds.Add(audioClip);
             }
         }
 
