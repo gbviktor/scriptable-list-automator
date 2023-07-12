@@ -1,0 +1,35 @@
+{
+  "name": "com.gbviktor.scriptable-list-automator",
+  "displayName": "Scriptable List Automator",
+  "author": {
+    "name": "Victor Bisterfeld",
+    "url": "https://gbviktor.de/scriptable-list-automator"
+  },
+  "version": "1.0.0",
+  "unity": "2022.1",
+  "description": "help you to manage/access game content easier by automated list of Assets in Editor",
+  "keywords": [
+    "tool",
+    "runtime",
+    "content",
+    "resources",
+    "managment"
+  ],
+  "license": "MIT",
+  "category": "Manager",
+  "dependencies": {
+    "com.unity.addressables": "1.20.0",
+    "com.cysharp.unitask": "2.3.1"
+  },
+  "samples": [
+    {
+      "displayName": "Sample",
+      "description": "This sample",
+      "path": "Samples~/Sample1"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbviktor/scriptable-list-automator.git"
+  }
+}
