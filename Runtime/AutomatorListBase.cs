@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace MontanaGames.ListAutomator
 {
-    public class AutomatorListBase<AssetWrapper, AssetType> : Assets<AssetWrapper> where AssetWrapper : IUniqueble, new() where AssetType : IType
+    public abstract class AutomatorListBase<AssetWrapper, AssetType> : Assets<AssetWrapper> where AssetWrapper : IUniqueble, new() where AssetType : IType
     {
         [Header("Settings")]
         [SerializeField] protected bool findAssetAfterCompile;
@@ -73,15 +73,9 @@ namespace MontanaGames.ListAutomator
             }
         }
 
-        protected virtual void RegisterAsset(string guid, UnityEngine.Object obj, string id)
-        {
-            AssetsList.Add((AssetWrapper)Activator.CreateInstance(typeof(AssetWrapper), guid, obj, id));
-        }
+        protected abstract void RegisterAsset(string guid, UnityEngine.Object obj, string id);
 
-        protected virtual void GetAssetID(string guid, UnityEngine.Object obj, out string id)
-        {
-            id = obj.name;
-        }
+        protected abstract void GetAssetID(string guid, UnityEngine.Object obj, out string id);
 
         /// <summary>
         /// you can filter your assets here
@@ -90,10 +84,7 @@ namespace MontanaGames.ListAutomator
         /// <param name="assset"></param>
         /// <param name="idOfAsset">you can change a ID of Asset</param>
         /// <returns>true to accept asset, false to decline/skip asset</returns>
-        protected virtual bool FilterAssetPassed(string guid, UnityEngine.Object assset)
-        {
-            return true;
-        }
+        protected abstract bool FilterAssetPassed(string guid, UnityEngine.Object assset);
     }
 #endif
     #endregion
