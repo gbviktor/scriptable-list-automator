@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-
+using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace MontanaGames.ListAutomator
 {
@@ -14,30 +15,25 @@ namespace MontanaGames.ListAutomator
 
         public IReadOnlyList<AudioClip> Sounds => sounds;
 
-        public AudioClip FindOrDefault(string value)
-        {
-            var res = sounds.Find(x => x.name == value);
-            return res != null ? res : defaultAudioClip;
-        }
-
-        #region EDITOR ONLY
-#if UNITY_EDITOR
-
-        protected override void OnValidate()
-        {
-            sounds.Clear();
-            base.OnValidate();
-        }
         protected override void RegisterAsset(string guid, Object obj, string id)
         {
             if (obj is AudioClip audioClip)
             {
-                if (!sounds.Contains(audioClip))
+                if(!sounds.Contains(audioClip))
                     sounds.Add(audioClip);
             }
         }
-
-#endif
-        #endregion
+        //setup/generate your ids for Asset, how you like
+        protected override void GetAssetID(string guid, Object obj, out string id)  
+        {  
+            if (obj is not AudioClip clip)  
+                throw new ArgumentException($"File has wrong type {obj.GetType()}, excepted Type is {typeof(AudioClip)}");  
+	      
+            id = "id#"+obj.name;  
+        }  
+	
+        //feel free to filter founded assets like a bird
+        protected override bool FilterAssetPassed(string guid, Object assset)   
+            => assset is AudioClip;
     }
 }
