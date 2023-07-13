@@ -21,7 +21,6 @@ https://github.com/gbviktor/scriptable-list-automator.git
 			- ` override FilterAssetPassed(Object asset) `
 
 
-
 ## Create Custom Lists (Simple)
 
 ```csharp
@@ -31,31 +30,34 @@ using MontanaGames.ListAutomator;
 
 [CreateAssetMenu(menuName = "/Demo/Audio List", fileName = "AudioList")]
 public class AudioListSO : AutomatorListBase<AssetItem<AudioClip>, AudioClipType>
-{
-	[SerializeField] List<AudioClip> sounds = new List<AudioClip>();
-	
-	protected override void RegisterAsset(string guid, Object obj, string id)
-	{
-		if (obj is AudioClip audioClip)
-		{
-			if(!sounds.Contains(audioClip))
-				sounds.Add(audioClip);
-		}
-	}
-	//setup/generate your ids for Asset, how you like
-	protected override void GetAssetID(string guid, Object obj, out string id)  
-	{  
-	    if (obj is not AudioClip clip)  
-	        throw new ArgumentException($"File has wrong type {obj.GetType()}, excepted Type is {typeof(AudioClip)}");  
-	      
-	    id = "id#"+wrapper.Id;  
-	}  
-	
-	//feel free to filter founded assets like a bird
-	protected override bool FilterAssetPassed(string guid, Object assset)   
-	    => assset is AudioClip;
-	}
-
+{  
+    [Tooltip("If requested AudioClip not found, you receive defaulAudioClip")]  
+    [SerializeField] AudioClip defaultAudioClip;  
+    [SerializeField] List<AudioClip> sounds = new List<AudioClip>();  
+  
+    public IReadOnlyList<AudioClip> Sounds => sounds;  
+  
+    protected override void RegisterAsset(string guid, Object obj, string id)  
+    {  
+        if (obj is AudioClip audioClip)  
+        {  
+            if(!sounds.Contains(audioClip))  
+                sounds.Add(audioClip);  
+        }  
+    }  
+    //setup/generate your ids for Asset, how you like  
+    protected override void GetAssetID(string guid, Object obj, out string id)    
+    {    
+        if (obj is not AudioClip clip)    
+            throw new ArgumentException($"File has wrong type {obj.GetType()}, excepted Type is {typeof(AudioClip)}");    
+     
+        id = "id#"+obj.name;    
+    }    
+  
+    //feel free to filter founded assets like a bird  
+    protected override bool FilterAssetPassed(string guid, Object assset)     
+        => assset is AudioClip;  
+}
 ```
 
 ## Types to search
