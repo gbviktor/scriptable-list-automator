@@ -14,17 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: MontanaGames.ListAutomator:MontanaGames.ListAutomator:SoundListAutomator_Demo
   assetPath: Packages/com.gbviktor.scriptable-list-automator/Runtime/Samples/BaseScriptablesExamples/Sounds/SoundListAutomator_Demo_Scriptable.asset
   PathToAssets: Packages/com.gbviktor.scriptable-list-automator/Runtime/Samples/BaseScriptablesExamples/Sounds
-  PathToResources: Packages/com.gbviktor.scriptable-list-automator/Runtime/Samples/BaseScriptablesExamples/Sounds
+  PathRelativeToResources: Packages/com.gbviktor.scriptable-list-automator/Runtime/Samples/BaseScriptablesExamples/Sounds
   assetsList: []
   findAssetAfterCompile: 0
-  TypeToSearch:
-    rid: 4990794395710390380
   defaultAudioClip: {fileID: 0}
   sounds:
   - {fileID: 8300000, guid: 1ae09741e23a4e2488a4e192132196b9, type: 3}
   - {fileID: 8300000, guid: 2303f085fdf634a4fad717dd46b5b9bc, type: 3}
-  references:
-    version: 2
-    RefIds:
-    - rid: 4990794395710390380
-      type: {class: AudioClipType, ns: MontanaGames.ListAutomator, asm: MontanaGames.ListAutomator}

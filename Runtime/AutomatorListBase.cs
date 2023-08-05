@@ -85,7 +85,7 @@ namespace MontanaGames.ListAutomator
         /// <param name="idOfAsset">you can change a ID of Asset</param>
         /// <returns>true to accept asset, false to decline/skip asset</returns>
         protected abstract bool FilterAssetPassed(string guid, UnityEngine.Object assset);
-    }
 #endif
     #endregion
+    }
 }
