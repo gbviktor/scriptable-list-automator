@@ -5,6 +5,10 @@ using Cysharp.Threading.Tasks;
 #else
 #endif
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 namespace MontanaGames.ListAutomator
@@ -40,12 +44,26 @@ namespace MontanaGames.ListAutomator
         private void OnEnable()
         {
             UpdateReference();
-            FindContent();
+
+            if (!EditorApplication.isPlayingOrWillChangePlaymode)
+            {
+                EditorApplication.delayCall += FindContent;
+            }
+            else
+            {
+                FindContent();
+            }
         }
         protected virtual void OnValidate()
         {
-            OnEnable();
-            UnityEditor.EditorUtility.SetDirty(this);
+            if (!EditorApplication.isPlayingOrWillChangePlaymode)
+            {
+                EditorApplication.delayCall += () =>
+                {
+                    OnEnable();
+                    EditorUtility.SetDirty(this);
+                };
+            }
         }
         public string[] FindObjectsInFolderOfType()
         {
